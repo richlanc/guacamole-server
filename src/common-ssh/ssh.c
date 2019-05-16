@@ -321,6 +321,13 @@ static int guac_common_ssh_authenticate(guac_common_ssh_session* common_session)
     guac_client_log(client, GUAC_LOG_DEBUG,
             "Supported authentication methods: %s", user_authlist);
 
+    /* Authenticated via userauth_list if 'none' is a valid method */
+    if (libssh2_userauth_authenticated(session)) {
+        guac_client_log(client, GUAC_LOG_DEBUG,
+                "Authenticated via 'none' method");
+        return 0;
+    }
+
     /* Authenticate with private key, if provided */
     if (key != NULL) {
 
