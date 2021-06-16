@@ -43,7 +43,7 @@
 #include <unistd.h>
 
 guac_rdp_fs* guac_rdp_fs_alloc(guac_client* client, const char* drive_path,
-        int create_drive_path, int disable_download, int disable_upload) {
+        int create_drive_path, int disable_download, int disable_download_folder, int disable_upload) {
 
     /* Create drive path if it does not exist */
     if (create_drive_path) {
@@ -66,6 +66,7 @@ guac_rdp_fs* guac_rdp_fs_alloc(guac_client* client, const char* drive_path,
     fs->file_id_pool = guac_pool_alloc(0);
     fs->open_files = 0;
     fs->disable_download = disable_download;
+    fs->disable_download_folder = disable_download_folder;
     fs->disable_upload = disable_upload;
 
     return fs;

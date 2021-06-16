@@ -584,7 +584,7 @@ void* guac_rdp_client_thread(void* data) {
         rdp_client->filesystem =
             guac_rdp_fs_alloc(client, settings->drive_path,
                     settings->create_drive_path, settings->disable_download,
-                    settings->disable_upload);
+                    settings->disable_download_folder, settings->disable_upload);
 
         /* Expose filesystem to owner */
         guac_client_for_owner(client, guac_rdp_fs_expose,

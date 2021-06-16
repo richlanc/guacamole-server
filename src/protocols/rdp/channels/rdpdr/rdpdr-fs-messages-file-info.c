@@ -165,9 +165,10 @@ void guac_rdpdr_fs_process_set_rename_info(guac_rdp_common_svc* svc,
             "destination_path=\"%s\"", __func__, iorequest->file_id,
             destination_path);
 
+    guac_rdp_fs* fs = device->data;
     /* If file moving to \Download folder, start stream, do not move */
     if (strncmp(destination_path, "\\Download\\", 10) == 0
-			&& !((guac_rdp_fs*) device->data)->disable_download) {
+			&& !(fs->disable_download || fs->disable_download_folder)){
 
         guac_rdp_fs_file* file;
 

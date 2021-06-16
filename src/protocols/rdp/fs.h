@@ -224,7 +224,12 @@ typedef struct guac_rdp_fs {
      * If downloads from the remote server to the browser should be disabled.
      */
     int disable_download;
-    
+
+    /**
+     * If /download special case should be disabled
+     */
+    int disable_download_folder;
+
     /**
      * If uploads from the browser to the remote server should be disabled.
      */
@@ -281,7 +286,7 @@ typedef struct guac_rdp_fs_info {
  *     The newly-allocated filesystem.
  */
 guac_rdp_fs* guac_rdp_fs_alloc(guac_client* client, const char* drive_path,
-        int create_drive_path, int disable_download, int disable_upload);
+        int create_drive_path, int disable_download, int disable_download_folder, int disable_upload);
 
 /**
  * Frees the given filesystem.

@@ -58,6 +58,7 @@ const char* GUAC_RDP_CLIENT_ARGS[] = {
     "drive-path",
     "create-drive-path",
     "disable-download",
+    "disable-download-folder",
     "disable-upload",
     "console",
     "console-audio",
@@ -231,7 +232,12 @@ enum RDP_ARGS_IDX {
      * the local client over RDP, "false" or blank otherwise.
      */
     IDX_DISABLE_DOWNLOAD,
-    
+
+    /**
+     * "true" to disable built in /download special case.
+     */
+    IDX_DISABLE_DOWNLOAD_FOLDER,
+
     /**
      * "true" to disable the ability to upload files from the local client to
      * the remote server over RDP, "false" or blank otherwise.
@@ -919,7 +925,12 @@ guac_rdp_settings* guac_rdp_parse_args(guac_user* user,
     settings->disable_download =
         guac_user_parse_args_boolean(user, GUAC_RDP_CLIENT_ARGS, argv,
                 IDX_DISABLE_DOWNLOAD, 0);
-    
+
+    /* If /download special case is disabled */
+    settings->disable_download_folder =
+        guac_user_parse_args_boolean(user, GUAC_RDP_CLIENT_ARGS, argv,
+                IDX_DISABLE_DOWNLOAD_FOLDER, 0);
+
     /* If file uploads over RDP should be disabled. */
     settings->disable_upload =
         guac_user_parse_args_boolean(user, GUAC_RDP_CLIENT_ARGS, argv,

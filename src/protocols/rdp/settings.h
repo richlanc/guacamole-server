@@ -233,7 +233,12 @@ typedef struct guac_rdp_settings {
      * Whether or not to disable file download over RDP.
      */
     int disable_download;
-    
+
+    /**
+     * Whether or not to disable the /download folder special case.
+     */
+    int disable_download_folder;
+
     /**
      * Wether or not to disable file upload over RDP.
      */

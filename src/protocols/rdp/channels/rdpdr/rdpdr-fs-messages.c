@@ -105,6 +105,7 @@ void guac_rdpdr_fs_process_create(guac_rdp_common_svc* svc,
     else {
 
         guac_rdp_fs_file* file;
+        guac_rdp_fs* fs = device->data;
 
         output_stream = guac_rdpdr_new_io_completion(device,
                 iorequest->completion_id, STATUS_SUCCESS, 5);
@@ -116,7 +117,7 @@ void guac_rdpdr_fs_process_create(guac_rdp_common_svc* svc,
         if (file != NULL && strcmp(file->absolute_path, "\\") == 0) {
             
             /* Only create Download folder if downloads are enabled. */
-            if (!((guac_rdp_fs*) device->data)->disable_download) {
+            if (!(fs->disable_download || fs->disable_download_folder)) {
                 int download_id =
                     guac_rdp_fs_open((guac_rdp_fs*) device->data, "\\Download",
                         GENERIC_READ, 0, FILE_OPEN_IF, FILE_DIRECTORY_FILE);
