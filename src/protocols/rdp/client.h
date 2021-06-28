@@ -65,7 +65,7 @@
 /**
  * The maximum number of bytes to allow within the clipboard.
  */
-#define GUAC_RDP_CLIPBOARD_MAX_LENGTH 262144
+#define GUAC_RDP_CLIPBOARD_MAX_LENGTH (5*1024*1024)
 
 /**
  * Initial rate of audio to stream, in Hz. If the RDP server uses a different
